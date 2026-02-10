@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Nexus Store</title>
+  <meta name="description" content="Complete your purchase securely.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">N</div>
+        <span class="text-gradient">Nexus</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="cart.html" class="nav-btn" title="Cart">
+          🛒
+          <span class="cart-count">0</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Checkout Section -->
+  <section class="checkout-section">
+    <div class="checkout-container">
+      <h1 class="checkout-title">Secure <span class="text-gradient">Checkout</span></h1>
+      
+      <!-- Checkout Steps -->
+      <div class="checkout-steps">
+        <div class="step completed">
+          <span class="step-number">✓</span>
+          <span>Cart</span>
+        </div>
+        <div class="step active">
+          <span class="step-number">2</span>
+          <span>Checkout</span>
+        </div>
+        <div class="step">
+          <span class="step-number">3</span>
+          <span>Confirmation</span>
+        </div>
+      </div>
+
+      <form class="checkout-form" onsubmit="placeOrder(event)">
+        <div class="form-row">
+          <!-- Shipping Information -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span>📍</span> Shipping Address
+            </h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="John" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" placeholder="Doe" required>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Street Address</label>
+              <input type="text" class="form-input" placeholder="123 Main Street" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-input" placeholder="New York" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">State</label>
+                <input type="text" class="form-input" placeholder="NY" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">ZIP Code</label>
+                <input type="text" class="form-input" placeholder="10001" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" placeholder="(555) 123-4567">
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="form-section">
+            <h3 class="form-section-title">
+              <span>📦</span> Order Summary
+            </h3>
+            <div class="checkout-summary" id="checkout-summary">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <span>💳</span> Payment Method
+          </h3>
+          <div class="payment-methods">
+            <label class="payment-method selected">
+              <input type="radio" name="payment" value="card" checked>
+              <span class="payment-method-icon">💳</span>
+              <div class="payment-method-info">
+                <div class="payment-method-name">Credit/Debit Card</div>
+                <div class="payment-method-desc">Visa, Mastercard, Amex</div>
+              </div>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="payment" value="paypal">
+              <span class="payment-method-icon">🅿️</span>
+              <div class="payment-method-info">
+                <div class="payment-method-name">PayPal</div>
+                <div class="payment-method-desc">Pay with your PayPal account</div>
+              </div>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="payment" value="apple">
+              <span class="payment-method-icon">🍎</span>
+              <div class="payment-method-info">
+                <div class="payment-method-name">Apple Pay</div>
+                <div class="payment-method-desc">Fast and secure checkout</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card Details (shown when card selected) -->
+        <div class="form-section" id="card-details">
+          <h3 class="form-section-title">
+            <span>💳</span> Card Details
+          </h3>
+          <div class="form-group full">
+            <label class="form-label">Card Number</label>
+            <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Expiry Date</label>
+              <input type="text" class="form-input" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CVV</label>
+              <input type="text" class="form-input" placeholder="123" maxlength="3">
+            </div>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Cardholder Name</label>
+            <input type="text" class="form-input" placeholder="John Doe">
+          </div>
+        </div>
+
+        <!-- Billing Address -->
+        <div class="form-section">
+          <h3 class="form-section-title">
+            <span>🏠</span> Billing Address
+          </h3>
+          <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; cursor: pointer;">
+            <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+            <span>Same as shipping address</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg place-order-btn">
+          Place Order →
+        </button>
+        
+        <p style="text-align: center; margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+          🔒 Your payment information is secure and encrypted
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">N</div>
+            <span class="text-gradient">Nexus</span>
+          </a>
+          <p class="footer-description">Your destination for premium products at unbeatable prices.</p>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="cart.html">Cart</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Nexus Store. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Payment method selection
+    document.querySelectorAll('.payment-method input').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.payment-method').forEach(method => {
+          method.classList.remove('selected');
+        });
+        this.closest('.payment-method').classList.add('selected');
+        
+        // Show/hide card details
+        const cardDetails = document.getElementById('card-details');
+        if (this.value === 'card') {
+          cardDetails.style.display = 'block';
+        } else {
+          cardDetails.style.display = 'none';
+        }
+      });
+    });
+
+    // Card number formatting
+    document.querySelector('input[placeholder="1234 5678 9012 3456"]')?.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+      let formattedValue = value.match(/.{1,4}/g)?.join(' ') || '';
+      e.target.value = formattedValue;
+    });
+
+    // Expiry date formatting
+    document.querySelector('input[placeholder="MM/YY"]')?.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\//g, '').replace(/[^0-9]/gi, '');
+      if (value.length >= 2) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+      }
+      e.target.value = value;
+    });
+  </script>
+</body>
+</html>

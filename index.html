@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Store | Modern Ecommerce</title>
+  <meta name="description" content="Discover the future of shopping at Nexus Store. Premium electronics, fashion, home goods, and more.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">N</div>
+        <span class="text-gradient">Nexus</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html?category=electronics">Electronics</a></li>
+        <li><a href="shop.html?category=fashion">Fashion</a></li>
+        <li><a href="#categories">Categories</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="shop.html" class="nav-btn" title="Search">🔍</a>
+        <a href="cart.html" class="nav-btn" title="Cart">
+          🛒
+          <span class="cart-count">0</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-badge">New Collection 2024</span>
+        <h1 class="hero-title">
+          Discover the <span class="text-gradient">Future</span> of Shopping
+        </h1>
+        <p class="hero-description">
+          Experience premium products at unbeatable prices. From cutting-edge electronics to timeless fashion, find everything you need in one place.
+        </p>
+        <div class="hero-buttons">
+          <a href="shop.html" class="btn btn-primary btn-lg">
+            Shop Now →
+          </a>
+          <a href="#featured" class="btn btn-secondary btn-lg">
+            View Featured
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value" data-value="50000">50K+</span>
+            <span class="stat-label">Happy Customers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" data-value="200">200+</span>
+            <span class="stat-label">Products</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" data-value="24">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-main">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop" alt="Shopping Experience">
+        </div>
+        <div class="floating-card floating-card-1">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100&h=100&fit=crop" alt="Product">
+          <div class="floating-card-info">
+            <span class="floating-card-title">Premium Headphones</span>
+            <span class="floating-card-price">$199</span>
+          </div>
+        </div>
+        <div class="floating-card floating-card-2">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100&h=100&fit=crop" alt="Product">
+          <div class="floating-card-info">
+            <span class="floating-card-title">Smart Watch</span>
+            <span class="floating-card-price">$399</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="section" id="categories">
+    <div class="section-header">
+      <span class="section-label">Browse by Category</span>
+      <h2 class="section-title">Shop by <span class="text-gradient">Category</span></h2>
+      <p class="section-description">Explore our wide range of products across different categories</p>
+    </div>
+    <div class="categories-grid" id="categories-grid">
+      <!-- Categories rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="section products-section" id="featured">
+    <div class="section-header">
+      <span class="section-label">Featured Products</span>
+      <h2 class="section-title">Best <span class="text-gradient">Sellers</span></h2>
+      <p class="section-description">Our most popular products loved by customers worldwide</p>
+    </div>
+    <div class="products-grid" id="featured-products">
+      <!-- Products rendered by JS -->
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="shop.html" class="btn btn-primary btn-lg">View All Products →</a>
+    </div>
+  </section>
+
+  <!-- New Arrivals Section -->
+  <section class="section" id="new-arrivals-section">
+    <div class="section-header">
+      <span class="section-label">Just Arrived</span>
+      <h2 class="section-title">New <span class="text-gradient">Arrivals</span></h2>
+      <p class="section-description">Check out the latest additions to our collection</p>
+    </div>
+    <div class="products-grid" id="new-arrivals">
+      <!-- Products rendered by JS -->
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" style="background: var(--bg-darker);">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">The Nexus <span class="text-gradient">Advantage</span></h2>
+    </div>
+    <div class="categories-grid" style="max-width: 1000px;">
+      <div class="category-card" style="flex-direction: column; text-align: center; padding: 2.5rem;">
+        <div class="category-icon" style="width: 80px; height: 80px; font-size: 2.5rem;">🚚</div>
+        <div class="category-info">
+          <h3>Free Shipping</h3>
+          <p>On orders over $100</p>
+        </div>
+      </div>
+      <div class="category-card" style="flex-direction: column; text-align: center; padding: 2.5rem;">
+        <div class="category-icon" style="width: 80px; height: 80px; font-size: 2.5rem;">↩️</div>
+        <div class="category-info">
+          <h3>Easy Returns</h3>
+          <p>30-day return policy</p>
+        </div>
+      </div>
+      <div class="category-card" style="flex-direction: column; text-align: center; padding: 2.5rem;">
+        <div class="category-icon" style="width: 80px; height: 80px; font-size: 2.5rem;">🔒</div>
+        <div class="category-info">
+          <h3>Secure Payment</h3>
+          <p>100% secure checkout</p>
+        </div>
+      </div>
+      <div class="category-card" style="flex-direction: column; text-align: center; padding: 2.5rem;">
+        <div class="category-icon" style="width: 80px; height: 80px; font-size: 2.5rem;">💬</div>
+        <div class="category-info">
+          <h3>24/7 Support</h3>
+          <p>Always here to help</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section">
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+      <span class="section-label">Stay Updated</span>
+      <h2 class="section-title">Subscribe to Our Newsletter</h2>
+      <p class="section-description">Get exclusive deals and updates delivered to your inbox</p>
+      <form onsubmit="subscribeNewsletter(event)" style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+        <input type="email" placeholder="Enter your email" required style="flex: 1; min-width: 250px; padding: 1rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); color: var(--text-primary); font-size: 1rem;">
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon">N</div>
+            <span class="text-gradient">Nexus</span>
+          </a>
+          <p class="footer-description">Your destination for premium products at unbeatable prices. Quality meets innovation.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" title="Facebook">f</a>
+            <a href="#" class="social-link" title="Twitter">𝕏</a>
+            <a href="#" class="social-link" title="Instagram">📷</a>
+            <a href="#" class="social-link" title="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="shop.html?category=electronics">Electronics</a></li>
+            <li><a href="shop.html?category=fashion">Fashion</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Customer Service</h4>
+          <ul class="footer-links">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Contact</h4>
+          <ul class="footer-links">
+            <li>📧 support@nexus.store</li>
+            <li>📞 1-800-NEXUS</li>
+            <li>📍 123 Tech Street, NY</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2024 Nexus Store. All rights reserved.</p>
+        <div class="footer-payments">
+          <span>💳</span>
+          <span>💳</span>
+          <span>💳</span>
+          <span>💳</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
